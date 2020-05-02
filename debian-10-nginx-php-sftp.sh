@@ -40,7 +40,7 @@ fi
 # INSTALL SOME STUFF
 
 apt update
-apt-get install -y nginx php-fpm
+apt-get install -y nginx php-fpm php-curl
 
 # DO WE HAVE UFW?
 
