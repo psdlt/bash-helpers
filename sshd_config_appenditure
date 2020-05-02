@@ -1,0 +1,8 @@
+
+Subsystem sftp internal-sftp
+
+Match Group sftp_users
+  X11Forwarding no
+  AllowTcpForwarding no
+  ChrootDirectory /home
+  ForceCommand internal-sftp
