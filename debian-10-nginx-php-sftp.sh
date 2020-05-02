@@ -52,8 +52,10 @@ fi
 PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 13 ; echo '')
 
 groupadd sftp_users
-useradd -d /home/$USERNAME -G sft_users -s /bin/bash $USERNAME
-echo $PASSWORD | passwd $USERNAME --stdin
+useradd -d /home/$USERNAME -G sftp_users -s /bin/bash $USERNAME
+mkdir -p /home/$USERNAME
+chown $USERNAME:$USERNAME /home/$USERNAME
+echo -e "$PASSWORD\n$PASSWORD" | passwd $USERNAME
 echo "PASSWORD for $USERNAME: $PASSWORD"
 
 # SETUP SFTP
@@ -71,7 +73,7 @@ sed -i "s/DOMAIN/$DOMAIN/g" "/etc/nginx/sites-available/$DOMAIN"
 ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
 
 # COPY DEMO FILE
-cp phpinfo.php /var/www/html/$DOMAIN/index.php
+cp phpinfo.php /var/www/$DOMAIN/index.php
 
 # RESTART SERVICES
 systemctl restart ssh
