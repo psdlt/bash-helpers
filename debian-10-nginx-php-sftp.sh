@@ -66,7 +66,6 @@ cat sshd_config_appenditure >> /etc/ssh/sshd_config
 
 # SETUP NGINX
 mkdir -p /var/www/$DOMAIN
-chown $USERNAME:$USERNAME /var/www/$DOMAIN
 
 cp nginx-basic.conf /etc/nginx/sites-available/$DOMAIN
 sed -i "s/DOMAIN/$DOMAIN/g" "/etc/nginx/sites-available/$DOMAIN"
@@ -74,6 +73,9 @@ ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
 
 # COPY DEMO FILE
 cp phpinfo.php /var/www/$DOMAIN/index.php
+
+# FIX PERMISSIONS
+chown $USERNAME:$USERNAME /var/www/$DOMAIN
 
 # RESTART SERVICES
 systemctl restart ssh
