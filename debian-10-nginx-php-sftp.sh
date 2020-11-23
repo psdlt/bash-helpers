@@ -75,7 +75,7 @@ ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
 cp phpinfo.php /var/www/$DOMAIN/index.php
 
 # FIX PERMISSIONS
-chown $USERNAME:$USERNAME /var/www/$DOMAIN
+chown -R $USERNAME:$USERNAME /var/www/$DOMAIN
 
 # RESTART SERVICES
 systemctl restart ssh
