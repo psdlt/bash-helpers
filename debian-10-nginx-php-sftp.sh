@@ -40,7 +40,7 @@ fi
 # INSTALL SOME STUFF
 
 apt update
-apt install -y lsb-release ca-certificates apt-transport-https software-properties-common
+apt install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list
 wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
 apt update
