@@ -40,7 +40,11 @@ fi
 # INSTALL SOME STUFF
 
 apt update
-apt-get install -y nginx php-fpm php-curl
+apt install -y lsb-release ca-certificates apt-transport-https software-properties-common
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list
+wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
+apt update
+apt-get install -y nginx php8.0-fpm php8.0-curl
 
 # DO WE HAVE UFW?
 
